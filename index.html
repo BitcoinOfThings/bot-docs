@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>BOT Documentation</title>
+    </head>
+    <body>
+    <h1><a href="https://bitcoinofthings.com/">Bitcoin Of Things (BOT)</a> Documentation</h1>
+    <hr/>
+    <p>
+    BOT will support 
+    the <a href="http://mqtt.org/" target="_blank">MQTT message protocol</a> 
+    as well as a REST API for configuring devices. Browsers may connect
+    using websockets (MQTT over websockets).
+    </p>
+
+    <h3>BOT MQTT</h3>
+    <p>The url for the mqtt protocol is <b>mqtt.bitcoinofthings.com</b>.
+    </p>
+    <p>A demo of communicating over websockets can be found 
+        at <a href="https://github.com/BitcoinOfThings/bot-demo-web">bot-demo-web</a></p>
+    <p>A mobile demo is in the works. The source is at 
+            <a href="https://github.com/BitcoinOfThings/bot-demo-mobile">bot-demo-mobile</a>
+    </p>
+    <table border="1">
+        <thead>
+            BOT MQTT Connection information for demo account
+        </thead>
+        <tr>
+                <td>Client ID</td><td><b>demo</b></td>
+            </tr>
+            <tr>
+            <td>User Name</td><td><b>demo</b></td>
+        </tr>
+        <tr>
+            <td>Password</td><td><b>demo</b></td>
+        </tr>
+        <tr>
+            <td>Publish and Subscribe Topic</td><td><b>demo</b></td>
+        </tr>
+        </table>
+        <br/>
+        <br/>
+    <table border="1">
+        <thead>BOT MQTT Port Information on mqtt.bitcoinofthings.com. 
+            Ports without SSL encryption might not be supported in production.</thead>
+        <tr>
+            <td>Port</td><td>Protocol Function</td>
+        </tr>
+        <tr>
+            <td>1883</td><td>MQTT Unsecured. Usernames, passwords and messages are not encrypted</td>
+        </tr>
+        <tr>
+            <td>1884</td><td>MQTT over websockets Unsecured. This will rarely work unless you are using an unsecured browser.</td>
+        </tr>
+        <tr>
+            <td>8883</td><td>MQTT secured with SSL certificate. </td>
+            </tr>
+            <tr>
+                <td>8884</td><td>MQTT over websockets secured with SSL certificate. This will work over https in a browser</td>
+            </tr>
+        </table>
+
+        <h3>BOT REST API</h3>
+        <p>api.bitcoinofthings.com</p>
+
+        <h3>Testing BOT websockets</h3>
+        <p>Basic message passing functionality can be tested 
+            on <a href="https://www.bitcoinofthings.com/send">the demo page</a></p>
+        <p>A demo websocket listener that will show the messages is at  
+            <a href="https://demo.bitcoinofthings.com">demo.bitcoinofthings.com</a></p>
+        <h3>Testing BOT MQTT from console</h3>
+        <p>Testing can be done using almost any MQTT client. Here are some commands to try using mosquitto.</p>
+        <p>Install mosquitto client<br>
+            <b>sudo apt-get install mosquitto-clients</b>
+        </p>
+        <p>Subscribe to demo topic so you can see messages...<br>
+            <b>mosquitto_sub -h mqtt.bitcoinofthings.com -p 1883 -u demo -P demo -t demo -d</b>
+        </p>
+        <p>Then publish a message on the demo topic...<br>
+            <b>mosquitto_pub -h mqtt.bitcoinofthings.com -p 1883 -u demo -P demo -t demo -d -m "Hello BOT"</b>
+        </p>
+
+        <p>Using a secure connection from Linux, subscribe to demo topic...<br>
+            <b>mosquitto_sub -h mqtt.bitcoinofthings.com -p 8883 -u demo -P demo -t demo -d --capath /etc/ssl/certs</b>
+        </p>
+        <p>Using a secure connection from Linux, publish a message on the demo topic...<br>
+            <b>mosquitto_pub -h mqtt.bitcoinofthings.com -p 8883 -u demo -P demo -t demo -d --capath /etc/ssl/certs -m "Hello secure BOT"</b>
+        </p>
+        <p>If you followed carefully you will notice that the message
+            published on the secure connection was also received on the 
+            unsecure connection! And and message published on the unsecure
+            connection was received on the secure channel! In other words,
+            there is only one MQTT broker topic and that topic
+            is shared between the various connections. So be alert.
+        </p>
+
+        <h3>Testing BOT mobile</h3>
+        <p>A mobile demo is at <a href="https://github.com/BitcoinOfThings/bot-demo-mobile">bot-demo-mobile</a></p>
+        <p>Or it can be tested with any MQTT mobile client. 
+            MQTT Terminal Pro on iOS
+            has been used successfully on port 1883 (unsecured)
+        </p>
+    </body>
+</html>
