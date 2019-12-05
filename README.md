@@ -1,2 +1,6 @@
-# bot-docs
-Documentation for Bitcoin Of Things
+# Documentation for Bitcoin Of Things
+The internet of things on Bitcoin
+
+https://docs.bitcoinofthings.com
+
+https://bitcoinofthings.com
