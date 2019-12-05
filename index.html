@@ -61,6 +61,18 @@
 
         <h3>BOT REST API</h3>
         <p>api.bitcoinofthings.com</p>
+        <p>All messages posted to the /messages endpoint will be published to the blockchain.</p>
+
+        <h3>BOT Topics for publishing to Bitcoin</h3>
+        <p>You MUST use a special topic if you want to get your message published on bitcoin. 
+            To make your message published to the blockchain, use 'bot_' at the beginning of your publish topic.</p>
+        <p>For example, if you have a listener on topic <b>demo</b> then you
+        should publish to topic <b>bot_demo</b>. If you publish message 'hello' to bot_demo then
+        your subscriber will get a message with a bitcoin transaction like 
+        <b>{message:"hello", txid:"abc123..."}</b></p>
+        <p>If you publish 'hello' to 'demo' then you have bypassed bitcoin and your subscriber
+            will get the message 'hello' on the demo topic.
+        </p>
 
         <h3>Testing BOT websockets</h3>
         <p>Basic message passing functionality can be tested 
